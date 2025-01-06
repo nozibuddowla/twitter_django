@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home / Twitter
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li> {{ error }} </li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                        <li> {{ error }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <div>
+            <label for="text" class="form-label"></label>
+            {% if form.instance.pk %}
+                <textarea class="form-control" id="text" name="text" rows="5" placeholder="What is happening?" required maxlength="280" oninput="updateCharacterCount(this)">{{ form.text.value }}</textarea>
+
+            {% else %}
+            <textarea class="form-control" id="text" name="text" rows="5" placeholder="What is happening?" required maxlength="280" oninput="updateCharacterCount(this)"></textarea>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="photo" class="form-label"></label>
+            {% if form.instance.photo %}
+                <div class="mb-3">
+                    <img src="{{ form.instance.photo.url }}" alt="Current Photo" class="img-fluid rounded-3 mb-3" style="max-height: 200px;">
+                    <div>
+                        <input type="checkbox" id="clear_photo" name="clear_photo">
+                        <label for="clear_photo">Clear current photo</label>
+                    </div>
+                </div>
+            {% endif %}
+            <input class="form-control" type="file" id="photo" name="photo">
+        </div>
+        <button type="submit" class="btn btn-light">Post</button>
+        <a href="{% url 'index' %}" class="btn btn-primary">Back to tweets page</a>
+    </form>
+</div>
+<script>
+    function updateCharacterCount(textarea) {
+        const maxLength = 240;
+        const currentLength = textarea.value.length;
+        const remainingLength = maxLength - currentLength;
+        const characterCountElement = document.getElementById('character-count');
+
+        characterCountElement.textContent = remainingLength + ' characters remaining';
+
+        if (remainingLength < 0) {
+            textarea.value = textarea.value.substring(0, maxLength);
+            characterCountElement.textContent = '0 characters remaining';
+        }
+    }
+</script>
+{% endblock content %}

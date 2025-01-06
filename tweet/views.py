@@ -41,3 +41,7 @@ def tweet_delete(request, tweet_id):
         tweet.delete()
         return redirect("index")
     return render(request, "tweet_delete.html", {"tweet": tweet})
+
+def tweet_detail(request, tweet_id):
+    tweet = get_object_or_404(Tweet, pk=tweet_id)
+    return render(request, 'tweet_detail.html', {'tweet': tweet})

@@ -1,4 +1,4 @@
-from djanog import forms
+from django import forms
 from .models import Tweet
 
 class TweetForm(forms.ModelForm):

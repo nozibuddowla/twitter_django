@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home / Twitter
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center mt-4">Are you sure that you want to delete the tweet?</h1>
+            <p><strong> {{ tweet.user.username }}: </strong> {{ tweet.text }} </p>
+            {% if tweet.photo %}
+                <img src=" {{ tweet.photo.url }} " class="img-fluid" alt=" {{ tweet.photo }} ">
+            {% endif %}
+            <p class="text-center">This action cannot be undone.</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger">Delete</button>
+                <a href=" {% url 'index' %} " class="btn btn-primary">Cancel</a>
+            </form>
+        </div>
+</div>
+{% endblock content %}
