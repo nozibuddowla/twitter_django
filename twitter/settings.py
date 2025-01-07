@@ -43,11 +43,9 @@ INSTALLED_APPS = [
 ]
 
 # Supabase S3 Settings
-# SUPABASE_URL = config('SUPABASE_URL')
-# SUPABASE_KEY = config('SUPABASE_KEY')
 
-SUPABASE_URL = config('SUPABASE_URL', default='https://example.supabase.co')
-SUPABASE_KEY = config('SUPABASE_KEY', default='your-default-key')
+SUPABASE_URL = config('SUPABASE_URL')
+SUPABASE_KEY = config('SUPABASE_KEY')
 
 
 # Media Files (using Supabase S3 API)
@@ -58,12 +56,8 @@ AWS_STORAGE_BUCKET_NAME = 'photos'  # Replace with your bucket name
 AWS_S3_ENDPOINT_URL = f"{SUPABASE_URL}/storage/v1"  # Endpoint for Supabase storage
 AWS_QUERYSTRING_AUTH = False 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'photos')
-
-# MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/"
-
 MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'photos')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
@@ -113,7 +107,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -153,4 +146,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
