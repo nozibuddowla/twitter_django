@@ -12,6 +12,7 @@ Tweet Detail
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start">
                         <h2 class="card-title"> {{ tweet.user.username }} </h2>
+                        {% if tweet.user == user %}
                         <div class="dropdown">
                             <button class="btn btn-outline-primary border-none rounded-circle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa-solid fa-ellipsis"></i>
@@ -25,6 +26,7 @@ Tweet Detail
                                 </li>
                             </ul>
                         </div>
+                        {% endif %}
                     </div>
                     <p class="card-text"> {{ tweet.text }} </p>
                     {% if tweet.photo %}
