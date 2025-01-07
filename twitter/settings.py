@@ -44,8 +44,8 @@ INSTALLED_APPS = [
 
 # Supabase S3 Settings
 
-SUPABASE_URL = config('SUPABASE_URL')
-SUPABASE_KEY = config('SUPABASE_KEY')
+SUPABASE_URL = config('SUPABASE_URL', default='https://example.supabase.co')
+SUPABASE_KEY = config('SUPABASE_KEY', default='your-default-key')
 
 
 # Media Files (using Supabase S3 API)
@@ -107,6 +107,7 @@ DATABASES = {
     }
 }
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -146,3 +147,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
