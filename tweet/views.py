@@ -15,6 +15,7 @@ def index(request):
 
     tweets = Tweet.objects.filter(text__icontains=search_query).order_by('-created_at') if search_query else Tweet.objects.all().order_by('-created_at')
 
+
     paginator = Paginator(tweets, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -36,30 +37,6 @@ def index(request):
     
     return render(request, "index.html", {"tweets": tweets, "form": form, "page_obj": page_obj, "search_query": search_query})
 
-# def index(request):
-#     tweets = Tweet.objects.all().order_by('-created_at')
-
-#     search_query = request.GET.get('search', '').strip()
-#     logger.debug(f"Searched Query for: {search_query}")
-
-#     if search_query:
-#         tweets = tweets.filter(text__icontains=search_query)
-#         logger.debug(f"Number of tweets found: {tweets.count()}")
-
-#     if request.method == 'POST':
-#         if request.user.is_authenticated:
-#             form = TweetForm(request.POST, request.FILES)
-#             if form.is_valid():
-#                 tweet = form.save(commit=False)
-#                 tweet.user = request.user
-#                 tweet.save()
-#                 return redirect('index')
-#         else:
-#             return redirect('login')
-#     else:
-#         form = TweetForm()
-
-#     return render(request, "index.html", {"tweets": tweets, "form": form})
 
 @login_required
 def tweet_create(request):
