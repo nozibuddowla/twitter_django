@@ -2,6 +2,10 @@
 
 A simple Twitter clone built with Django, Bootstrap, and custom user authentication. This project allows users to create, edit, delete, and search tweets, as well as register and log in to their accounts.
 
+## Live Demo
+
+[Live Demo](https://twitter-django.onrender.com/)
+
 ## Features
 
 - **User Registration**: Users can create an account with a username, email, and password.
