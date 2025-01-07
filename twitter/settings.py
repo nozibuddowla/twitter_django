@@ -43,8 +43,12 @@ INSTALLED_APPS = [
 ]
 
 # Supabase S3 Settings
-SUPABASE_URL = config('SUPABASE_URL')
-SUPABASE_KEY = config('SUPABASE_KEY')
+# SUPABASE_URL = config('SUPABASE_URL')
+# SUPABASE_KEY = config('SUPABASE_KEY')
+
+SUPABASE_URL = config('SUPABASE_URL', default='https://example.supabase.co')
+SUPABASE_KEY = config('SUPABASE_KEY', default='your-default-key')
+
 
 # Media Files (using Supabase S3 API)
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -54,12 +58,12 @@ AWS_STORAGE_BUCKET_NAME = 'photos'  # Replace with your bucket name
 AWS_S3_ENDPOINT_URL = f"{SUPABASE_URL}/storage/v1"  # Endpoint for Supabase storage
 AWS_QUERYSTRING_AUTH = False 
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'photos')
 
-# MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/media/"
+# MEDIA_URL = f"{SUPABASE_URL}/storage/v1/object/public/"
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
