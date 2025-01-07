@@ -28,7 +28,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'twitter_django.onrender.com']
+ALLOWED_HOSTS = ['twitter-django.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
